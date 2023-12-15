@@ -1,3 +1,3 @@
 # Meteo-Weather-Data
 
-This short project is used to obtain data from weather observations API provided by Lithuanian Hydrometeorological Service, API can be found at https://api.meteo.lt/
+This short project is designed to fetch weather observations data from the Lithuanian Hydrometeorological Service API. The API, accessible at https://api.meteo.lt/, serves as the primary source for obtaining up-to-date (and historical) weather information.
