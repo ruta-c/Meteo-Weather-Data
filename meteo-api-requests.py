@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
 import requests
 import pandas as pd
 import numpy as np
@@ -9,7 +5,7 @@ import json
 import time
 import psycopg2
 from sqlalchemy import create_engine
-# In[3]:
+
 conn = psycopg2.connect(
     database="database",
     user="postgres",
@@ -17,14 +13,12 @@ conn = psycopg2.connect(
     host="localhost",
     port="0000"
 )
-# In[4]:
+
 engine = create_engine("postgresql://postgres:password@localhost:password/database")
-# In[5]:
 stations_response = requests.get('https://api.meteo.lt/v1/stations')
-# In[6]:
 stations_json = stations_response.json()
 df_stations = pd.DataFrame(stations_json)
-# In[8]:
+
 def get_stations_observations(station_name, date_from, date_to):
     dates_list = [d.strftime('%Y-%m-%d') for d in pd.date_range(date_from, date_to)]
     append_data = []
@@ -52,7 +46,7 @@ def get_stations_observations(station_name, date_from, date_to):
 
     df_observations = pd.concat(append_data)
     return df_observations
-# In[9]:
+    
+# Example of calling API
 utena_obs = get_stations_observations('utenos-ams', '2014-01-01', '2023-01-01')
-# In[10]:
 utena_obs.to_sql('utena', engine, if_exists='replace', index=False)
